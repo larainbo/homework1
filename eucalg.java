@@ -21,21 +21,30 @@ class eucalg{
 		BigInteger X = new BigInteger("0");
 		BigInteger Y = B;
 		
+		/*
 		if (Y.equals(0)){
-			BigInteger V = (G.subtract(A.multiply(U))).divide(B);
+			BigInteger V = (G.subtract(A.multiply(U))).divide(B);  //divide by zero??
 			System.out.println(G + ", " + U + ", " + V);
 			System.exit(0);
 		}
+		*/
 		
-		while ( !B.equals(0)){
+		while (!B.equals(0)){
 			
+			if(Y.equals(0)){
+				System.out.println("Y=0");
+				System.exit(0);
+			}
+				
 			BigInteger Q = G.divide(Y);
-			BigInteger R = G.remainder(Y);
+			BigInteger T = G.remainder(Y);
 			
+			BigInteger S = U.subtract(Q.multiply(X));
+
+			U = X;
 			G = Y;
-			Y = R;
-			
-			
+			X = S;
+			Y = T;
 			
 		}
 		
