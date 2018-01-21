@@ -1,14 +1,21 @@
 import java.math.BigInteger;
 
 public class ExtendedEuclid {
+    private static final BigInteger ZERO = new BigInteger("0");
+
     public static BigInteger[] solve(BigInteger a, BigInteger b) {
-        BigInteger ZERO = new BigInteger("0");
+        // ensure that we don't run into a divide by zero case
+        if (b.equals(ZERO)) {
+            // Not sure if this is the right way to handle this case
+            throw new Error("'b' cannot be zero.");
+        }
 
         BigInteger u = new BigInteger("1");
         BigInteger g = a;
         BigInteger x = ZERO;
         BigInteger y = b;
 
+        // Find g(gcd) & u
         while (!y.equals(ZERO)) {
             BigInteger t = g.mod(y);
             BigInteger q = g.subtract(t).divide(y);
@@ -20,7 +27,14 @@ public class ExtendedEuclid {
             y = t;
         }
 
+        // Calcuate v, and loop until u > 0
         BigInteger v = (g.subtract(a.multiply(u))).divide(b);
+        while (u.compareTo(ZERO) == -1) {
+            u = u.add(b.divide(g));
+            v = v.subtract(a.divide(g));
+        }
+
+        // return g(gcd), u & v
         return new BigInteger[] { g, u, v };
     }
 
@@ -38,7 +52,6 @@ public class ExtendedEuclid {
 
         System.out.println("Example from book:");
         System.out.println(format(solve(a, b), a, b));
-        // SHOULD BE: −7·2024+19·748 = 44
 
         System.out.println("\n1.12 Exercise 'c':");
 
