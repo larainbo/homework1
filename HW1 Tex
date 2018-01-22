@@ -1,0 +1,191 @@
+\documentclass[12pt]{article}
+	\addtolength{\oddsidemargin}{-.875in}
+	\addtolength{\evensidemargin}{-.875in}
+	\addtolength{\textwidth}{1.75in}
+
+	\addtolength{\topmargin}{-.875in}
+	\addtolength{\textheight}{1.75in}
+	
+\usepackage{graphicx}
+\begin{document}
+\begin{center}
+Cryptography HW 1
+\bigbreak
+\end{center}
+\bigbreak
+\begin{flushleft}
+Group 5:\\
+David Skinner, Lauren Rainbolt, Daniel Decipulo, Jared Ramirez, Spencer Vaughn\\
+Due Tuesday January 23rd   
+\bigbreak
+Do exercises 1.12, 1.23, 1.25\\
+\bigbreak
+\textbf{1.12: The method for solving $au + bv =$gcd$(a,b)$ described in section 1.2 is somewhat inefficient. This exercise describes a method to compute $u$ and $v$ that is well suited for computer implementation. In particular, it uses very little storage.} \\
+\bigbreak
+\textbf{1.12-a} Show that the following algorithm computes the greatest common divisor $g$ of the positive integers $a$ and $b$, together with a solution $(u,v)$ in integers to the equation $au + bv =$gcd$(a,b)$.\\
+\bigbreak
+Our code, which was implemented based on the code listed with this problem in the book, shows that the algorithm does successfully compute the greatest common divisor, $g$, as well as $u$ and $v$. This is because it is the extended euclidean algorithm.\\
+\bigbreak
+\textbf{1.12-b} Implement the above algorithm on a computer using the computer language of your choice.\\
+\begin{center}
+Please see attached code.\\
+\end{center}
+\bigbreak
+\textbf{1.12-c} Use your program to compute $g=$gcd$(a,b)$ and integer solutions to the equation $au+bv = g$ for the following pairs $(a,b)$.\\
+\begin{tabbing}
+\hspace*{2cm}\=\hspace*{3cm}\= \kill
+\> (i)    (527,1258) = $43 \ast 527 + -18 \ast 1258 = 17$\\
+\> (ii)   (228,1056) = $ 51 \ast 228 + -11 \ast 1056 = 12$\\
+\> (iii)  (163961, 167181) = $ 4517 \ast 163961 + -4430 \ast 167181 = 7$\\
+\> (iv)   (3892394, 239847) = $59789 \ast 3892394 + -970295 \ast 239847 = 1$\\
+\end{tabbing}
+
+\bigbreak
+\textbf{1.12-d} What happens to your program if $b=0$? Fix the program so that it deals with this case correctly.
+\bigbreak
+If $b=0$ then the gcd will be $a$.\\
+\bigbreak
+\textbf{1.12-e} It is often useful to have a solution with $u>0$. Modify your program so that it returns a solution with $u>0$ and $u$ as small as possible. Redo $(c)$ using your modified program.
+\begin{tabbing}
+\hspace*{2cm}\=\hspace*{3cm}\= \kill
+\> (i)    (527,1258) = $43 \ast 527 + -18 \ast 1258 = 17$\\
+\> (ii)   (228,1056) = $ 51 \ast 228 + -11 \ast 1056 = 12$\\
+\> (iii)  (163961, 167181) = $ 4517 \ast 163961 + -4430 \ast 167181 = 7$\\
+\> (iv)   (3892394, 239847) = $59789 \ast 3892394 + -970295 \ast 239847 = 1$\\
+\end{tabbing}
+\bigbreak
+\textbf{1.23-a} Find a single value $x$ that simultaneously solves the two congruences $x\equiv3$ (mod7) and $x\equiv4$ (mod9).\\
+\bigbreak
+\begin{tabular}{l l}
+$x\equiv 3$ mod 7& {}\\
+$x\equiv 4$ mod 9 & {}\\
+$x=3+7y\Rightarrow$ & $3+7y = 4$ mod 9\\ 
+{} & $7y = 1$ mod 9\\
+{} & $y = 7^{-1}$ mod 9\\
+{} & $7\ast4$ mod 9 = 1 $\Rightarrow 28$ mod 9 = 1\\
+{} & $y= 4$\\
+$x = 3+ 7(4)$ & {}\\
+$x=3+28$ & {}\\
+$x = 31$ & {}\\
+\end{tabular}
+\bigbreak
+\textbf{1.23-b} Find a single value $x$ that simultaneously solves the two congruences $x\equiv13$ (mod71) and $x\equiv41$ (mod97).\\
+\bigbreak
+\begin{tabular}{l l l}
+$x\equiv 13$ mod 71& {} & {}\\
+$x\equiv 41$ mod 97 & {} & {}\\
+$x=13+71y\Rightarrow$ & $13+71y = 41$ mod 97 & {}\\ 
+{} & $71y = 28$ mod 97\\
+{} & $y = 28\ast71^{-1} \Rightarrow$ & $71\ast41$ mod 97 =1\\
+{} & {} & $=2911$ mod 97 = 1\\
+{} & $28\ast41$ & {}\\
+{} & $1148 = 81$ mod 97 =0 & {}\\
+{} & y=81 & {}\\
+$x=13+71(81)$ & {}& {}\\
+$x= 13+5751$ & {} & {}\\
+$x=5764$ & {} & {}\\
+\end{tabular}
+\bigbreak
+\textbf{1.23-c} Find a single value $x$ that simultaneously solves the two congruences $x\equiv4$ (mod7), $x\equiv5$ (mod8), and $x\equiv11$ (mod 15).\\
+\bigbreak
+\begin{tabular}{l l l}
+$x\equiv 4$ mod 7& {} & {}\\
+$x\equiv 5$ mod 8 & {} & {}\\
+$x\equiv 11$ mod 15 & {} & {}\\
+$x=4+7y\Rightarrow$ & $4+7y = 5$ mod 8 & $4+7y = 11$ mod 15\\ 
+{} & $7y = 1$ mod 8 & $7y= 7$ mod 15\\
+{} & {} & $y=1$ mod 15\\
+{} & $7(1+15z) = 1$ mod 8 & {}\\
+{} & $7 +105z = 1$ mod 8 & {}\\
+{} & $105z=-6$ mod 8 & {}\\
+{} & $105z = 2$ mod 8 & {}\\
+{} & $z=2\ast105^{-1}\Rightarrow$ & $105\ast1$ mod 8 =1\\
+{} & $=2\ast1$ & 105 mod 8 =1\\
+{} & $z=2$ & {}\\
+{} & $y=1+15(2)$ & {}\\
+{} & $= 1 + 30$ & {}\\
+{} & y = 31 & {}\\
+$x=4+7(31)$ & {}& {}\\
+$x= 4+217$ & {} & {}\\
+$x=221$ & {} & {}\\
+\end{tabular}
+\bigbreak
+\textbf{1.23-d} Prove that if gcd$(m,n)=1$, then the pair of congruences $x\equiv a$ (mod$m$) and $x\equiv b$ (mod$n$) has a solution for any choice of $a$ and $b$. Also give an example to show that the condition $gcd(m,n) = 1$ is necessary.\\
+\bigbreak
+Let $M_{1} = n$ and $M_{2} = m$ \\
+$(M_{1},m) = (n,m) =1$, so $M_{1}$ has an inverse ($\exists{M_{1}}^*$ s.t. ${M_{1}}^* \ast M_{1} \equiv 1$ (mod $m$)) \\
+$(M_{2},n) = (n,m) =1$, so $M_{2}$ has an inverse ($\exists{M_{2}}^*$ s.t. ${M_{2}}^* \ast M_{2} \equiv 1$ (mod $m$)) \\
+If $x= a \ast M_1 \ast {M_{1}}^* + b \ast M_2 \ast {M_{2}}^* \equiv a \ast 1 + b \ast 0 \equiv a$ (mod $m$)\\
+If $x= a \ast M_1 \ast {M_{1}}^* + b \ast M_2 \ast {M_{2}}^* \equiv a \ast 0 + b \ast 1 \equiv b$ (mod $n$)\\
+\bigbreak
+$m \vert M_2 \Leftrightarrow M_2 \equiv 0$ (mod $m$)\\
+$n \vert M_1 \Leftrightarrow M_1 \equiv 0$ (mod $n$)\\
+${M_{1}}^* \ast M_1 \equiv $ (mod $m$)\\
+${M_{2}}^* \ast M_2 \equiv $ (mod $n$)\\
+\bigbreak
+$gcd(m,n) = 1$ is a necessary condition for the existence of an inverse. If $gcd(m,n)>1$, then $x$ has no multiplicative inverse mod m.\\
+\bigbreak
+\textbf{1.25: Use the square-and-multiply algorithm described in Section 1.3.2, or the more efficient version in Exercise 1.24, to compute the following powers.}\\
+\textbf{1.25-a} $17^{183}$ (mod 256).\\
+
+\begin{tabbing}
+\hspace*{2cm}\=\hspace*{3cm}\= \kill
+$183=10110111$\\
+$183= 123+32+16+4+2+1$\\
+{ }{ }{ }{ }{ }$=2^7+2^5+2^4+2^2+2^1+2^0$\\
+{ }\\
+$17^{183} = 17^{(2^0+2^1+2^2+2^4+2^5+2^7)}$\\
+{ }{ }{ }{ }{ }{ }{ }$=17^{2^0}\ast17^{2^1}\ast17^{2^2}\ast17^{2^4}\ast17^{2^5}\ast17^{2^7}$\\
+{ }\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+$i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ \hline
+$17^{2^i}mod256$ & 17 & 33 & 65 & 97 & 1 & 1 & 1 & 1\\ \hline
+\end{tabular}
+{ }\\
+{ }\\
+$=(17\ast 33\ast 65\ast 1\ast1\ast1)$ mod 256\\
+$=113$\\
+\end{tabbing}
+\bigbreak
+\textbf{1.25-b} $2^{477}$ (mod 1000).\\
+\begin{tabbing}
+\hspace*{2cm}\=\hspace*{3cm}\= \kill
+$477=111011101$\\
+{ }{ }{ }{ }{ }$=2^8+2^7+2^6+2^4+2^3+2^2+2^0$\\
+{ }\\
+$2^{477}=2^{2^8}\ast2^{2^7}\ast2^{2^6}\ast2^{2^4}\ast2^{2^3}\ast2^{2^2}\ast2^{2^0}$\\
+{ }\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+\hline
+$i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+$2^{2^i}mod1000$ & 2 & 4 & 16 & 256 & 536 & 296 & 616 & 456 & 936\\ \hline
+\end{tabular}
+{ }\\
+{ }\\
+$=(2\ast 16\ast 256\ast 536\ast616\ast456 \ast936)$ mod 1000\\
+$=272$\\
+\end{tabbing}
+\bigbreak
+\textbf{1.25-c} $11^{507}$ (mod 1237).\\
+\bigbreak
+\begin{tabbing}
+\hspace*{2cm}\=\hspace*{3cm}\= \kill
+$507=111111011$\\
+{ }{ }{ }{ }{ }$=2^8+2^7+2^6+2^5+2^4+2^3+2^1+2^0$\\
+{ }\\
+$11^{507}=11^{2^8}\ast11^{2^7}\ast11^{2^6}\ast11^{2^5}\ast11^{2^4}\ast11^{2^3}\ast11^{2^1}\ast11{2^0}$\\
+{ }\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+\hline
+$i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+$11^{2^i}mod1237$ & 11 & 121 & 1034 & 388 & 867 & 830 & 1128 & 748 & 380\\ \hline
+\end{tabular}
+{ }\\
+{ }\\
+$=(380\ast 748\ast 1128\ast 830\ast 867\ast 388 \ast121 \ast11)$ mod 1237\\
+$=322$\\
+\end{tabbing}
+\bigbreak
+\end{flushleft}
+\end{document}
